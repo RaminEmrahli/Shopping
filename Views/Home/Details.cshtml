@@ -1,0 +1,61 @@
+﻿@model Product
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="span9">
+	<ul class="breadcrumb">
+		<li><a asp-controller="Home" asp-action="Index">Home</a> <span class="divider">/</span></li>
+		<li><a asp-controller="Home" asp-action="Index" asp-route-id="@Model.Category.Id">Products</a> <span class="divider">/</span></li>
+		<li class="active">product Details</li>
+	</ul>
+	<div class="row">
+		<div id="gallery" class="span3">
+			<a href="~/assets/themes/images/products/large/f1.jpg" title="Fujifilm FinePix S2950 Digital Camera">
+				<img src="~/assets/themes/images/products/@Model.ImageUrl" style="width:100%" alt="@Model.Name" />
+			</a>
+
+		</div>
+		<div class="span6">
+			<h3>@Model.Brand @Model.Name  </h3>
+			<hr class="soft" />
+			<label class="control-label"><h4>$@Model.Price</h4></label>
+			<a asp-controller="Basket" asp-action="AddItemToShoppingCart" asp-route-id="@Model.Id" class="btn btn-large btn-primary pull-right"> Add to cart <i class=" icon-shopping-cart"></i></a>
+			<hr class="soft" />
+			<h4>@Model.StockCount items in stock</h4>
+			<hr class="soft clr" />
+			<p>
+				@Model.Features
+
+			</p>
+			<a class="btn btn-small pull-right" href="#detail">More Details</a>
+			<br class="clr" />
+			<a href="~/assets/#" name="detail"></a>
+			<hr class="soft" />
+		</div>
+
+		<div class="span9">
+			<ul id="productDetail" class="nav nav-tabs">
+				<li class="active"><a href="~/assets/#home" data-toggle="tab">Product Details</a></li>
+			</ul>
+			<div id="myTabContent" class="tab-content">
+				<div class="tab-pane fade active in" id="home">
+					<h4>Product Information</h4>
+					<table class="table table-bordered">
+						<tbody>
+							<tr class="techSpecRow"><th colspan="2">Product Details</th></tr>
+							<tr class="techSpecRow"><td class="techSpecTD1">Brand: </td><td class="techSpecTD2">@Model.Brand</td></tr>
+							<tr class="techSpecRow"><td class="techSpecTD1">Model:</td><td class="techSpecTD2">@Model.Name</td></tr>
+							<tr class="techSpecRow"><td class="techSpecTD1">Released on:</td><td class="techSpecTD2"> @Model.ReleaseDate</td></tr>
+							<tr class="techSpecRow"><td class="techSpecTD1">Category:</td>@Model.Category.Name<td class="techSpecTD2">3</td></tr>
+						</tbody>
+					</table>
+
+					
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+

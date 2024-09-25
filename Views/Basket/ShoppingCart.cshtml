@@ -1,0 +1,60 @@
+﻿@model ShoppingCartVM
+<div class="span9">
+    <ul class="breadcrumb">
+        <li><a asp-controller="Home" asp-action="Index">Home</a> <span class="divider">/</span></li>
+        <li class="active"> SHOPPING CART</li>
+    </ul>
+    <h3>
+        <a asp-controller="Home" asp-action="Index" class="btn btn-large pull-right"><i class="icon-arrow-left"></i> Continue Shopping </a>
+    </h3>
+    <hr class="soft" />
+    <table class="table table-bordered">
+        <tr>
+            <td>
+            </td>
+        </tr>
+    </table>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Description</th>
+                <th>Quantity/Update</th>
+                <th>Price</th>
+                <th>SubTotal</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.CardItems)
+            {
+                <tr>
+                    <td> <img width="60" src="~/assets/themes/images/products/@item.Product.ImageUrl" alt="" /></td>
+                    <td>@item.Product.Brand<br />@item.Product.Name</td>
+                    <td>
+                        <div class="input-append">
+                            <input class="span1" style="max-width:34px" placeholder="@item.Amount" id="appendedInputButtons" size="16" type="text">
+                            <a class="btn" asp-controller="Basket" asp-action="RemoveItemFromShoppingCart">
+                                <i class="icon-minus"></i>
+                            </a><a class="btn" asp-controller="Basket" asp-action="AddItemToShoppingCart"><i class="icon-plus"></i></a>
+                            <a class="btn btn-danger" asp-controller="Basket" asp-action="DeleteItem"><i class="icon-remove icon-white"></i></a>
+                        </div>
+                    </td>
+                    <td>@item.Product.Price</td>
+                    <td>@((item.Amount * item.Product.Price).ToString("c"))</td>
+                </tr>
+            }
+
+            <tr>
+                <td colspan="5" style="text-align:right"><strong>TOTAL =</strong></td>
+                <td class="label label-important" style="display:block"> <strong> $@Model.Total </strong></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h1>ESTIMATE YOUR SHIPPING </h1>
+
+    <a asp-controller="Home" asp-action="Index" class="btn btn-large"><i class="icon-arrow-left"></i> Continue Shopping </a>
+
+    <a asp-controller="Order" asp-action="CompleteOrder" class="btn btn-primary btn-large pull-right">Complete Order</a>
+</div>

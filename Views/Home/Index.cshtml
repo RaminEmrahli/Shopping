@@ -1,0 +1,34 @@
+﻿@model List<Product>
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+			<!-- Sidebar end=============================================== -->
+			<div class="span9">
+				<h4>Products </h4>
+				<ul class="thumbnails">
+		@foreach(var item in Model)
+		{
+			<li class="span3">
+				<div class="thumbnail">
+					<a href="product_details.html"><img src="~/assets/themes/images/products/@item.ImageUrl" alt="" /></a>
+					<div class="caption">
+						<h5>@item.Brand @item.Name</h5>
+						<h4 style="text-align:center">
+							<a class="btn" asp-controller="Home" asp-action="Details" asp-route-id="@item.Id"> <i class="icon-zoom-in"></i></a>
+							<a class="btn" asp-controller="Basket" asp-action="AddItemToShoppingCart" asp-route-id="@item.Id">Add to 
+								<i class="icon-shopping-cart"></i></a>
+							<a class="btn btn-primary" asp-controller="Basket" asp-action="AddItemToShoppingCart" asp-route-id="@item.Id">$222.00</a>
+						</h4>
+					</div>
+				</div>
+			</li>
+		}
+
+				</ul>
+
+			</div>
+		
+
+
